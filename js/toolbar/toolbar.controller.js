@@ -39,7 +39,22 @@ angular.module('inboxApp')
     }
   ]
 
-  vm.labelSelect = function(selected) {
-    console.log(selected);
+
+  vm.addLabel = function(selected, mail) {
+    for (var i = 0; i < mail.length; i++) {
+      if (mail[i].labels.indexOf(selected) === -1 && mail[i].selected == true) {
+        mail[i].labels.push(selected)
+      }
+      mail[i].labels.sort()
+    }
   }
+
+  vm.removeLabel = function(deleted, mail) {
+    for (var i = 0; i < mail.length; i++) {
+    if (mail[i].labels.indexOf(deleted) >= 0 && mail[i].selected == true) {
+      mail[i].labels.splice(mail[i].labels.indexOf(deleted), 1)
+    }
+    }
+  }
+
 }

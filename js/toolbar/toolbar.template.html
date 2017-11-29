@@ -58,11 +58,19 @@
         unread messages
       </p>
 
-      <button class="btn btn-default">
-        <i class="fa fa-minus-square-o"></i>
+      <a class="btn btn-danger">
+        <i class="fa fa-plus"></i>
+      </a>
+
+      <button ng-if="(ctrl.selectAll($ctrl.mail)==0)" class="btn btn-default" ng-click="ctrl.test($ctrl.mail)">
+        <i class="fa fa-square-o"></i>
       </button>
 
-      <button class="btn btn-default">
+      <button ng-if="(ctrl.selectAll($ctrl.mail)<= $ctrl.mail.length) && (ctrl.selectAll($ctrl.mail)>0)" class="btn btn-default" ng-click="ctrl.unselectAll($ctrl.mail)">
+        <i class="fa fa-check-square-o"></i>
+      </button>
+
+      <button class="btn btn-default" ng-click="ctrl.markAsRead($ctrl.mail)">
         Mark As Read
       </button>
 
@@ -70,15 +78,12 @@
         Mark As Unread
       </button>
 
-      <select class="form-control label-select" ng-model="labels" ng-options="name.label as name.label for name in ctrl.allLabels track by name.id" ng-change="ctrl.labelSelect(labels)">
-        <option value=" ">Apply label</option>
+      <select class="form-control label-select" ng-model="labels" ng-options="name.label as name.label for name in ctrl.allLabels track by name.id" ng-change="ctrl.addLabel(labels, $ctrl.mail)">
+        <option value="">Apply label</option>
       </select>
 
-      <select class="form-control label-select">
-        <option>Remove label</option>
-        <option value="dev">dev</option>
-        <option value="personal">personal</option>
-        <option value="gschool">gschool</option>
+      <select class="form-control label-select" ng-model="deleted" ng-options="name.label as name.label for name in ctrl.allLabels track by name.id" ng-change="ctrl.removeLabel(deleted, $ctrl.mail)">
+        <option value="">Remove label</option>
       </select>
 
       <button class="btn btn-default">
