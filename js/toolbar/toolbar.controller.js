@@ -70,6 +70,7 @@ angular.module('inboxApp')
     "command": "star",
     "star": bool
   }
+  console.log(data);
   $http.patch(url, data)
   .then(() => {
     $http.get(url)
