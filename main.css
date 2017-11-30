@@ -18,11 +18,11 @@
   border-top: 1px solid #efefef;
 }
 
-.message.read {
+.message.read-true {
   background: #efefef;
 }
 
-.message.unread {
+.message.read-false {
   font-weight: bold;
 }
 

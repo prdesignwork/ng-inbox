@@ -3,8 +3,10 @@ angular.module('inboxApp')
 
   function inbox($http) {
     const vm = this
-      $http.get('https://ang-database.herokuapp.com/api/messages')
+    const url = 'https://ang-database.herokuapp.com/api/messages';
+      $http.get(url)
       .then((data) => {
+        console.log(data);
         vm.messages = data.data._embedded.messages;
       })
-}
+  }
