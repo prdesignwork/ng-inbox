@@ -3,6 +3,7 @@ angular.module('inboxApp')
 
   function toolbar() {
     const vm = this
+    const url = 'https://ang-database.herokuapp.com/api/messages';
 
     vm.test = function(mail) {
       for (var i = 0; i < mail.length; i++) {
@@ -56,5 +57,26 @@ angular.module('inboxApp')
     }
     }
   }
+
+  vm.star = function(message) {
+  let bool = message.starred
+  if (bool) {
+    bool = false
+  } else {
+    bool = true
+  }
+  let data = {
+    "messageIds": [message.id],
+    "command": "star",
+    "star": bool
+  }
+  $http.patch(url, data)
+  .then(() => {
+    $http.get(url)
+    .then((result) => {
+      vm.messages = data.data._embedded.messages
+    })
+  })
+}
 
 }

@@ -9,11 +9,12 @@
               <input type="checkbox" ng-model="message.selected"/>
             </div>
             <div class="col-xs-2">
-              <div ng-if="message.starred==true">
-              <i ng-click="message.starred=false" class="star fa fa-star"></i>
+              <div ng-if="(message.starred == true)" class="col-xs-2">
+                <i ng-click="ctrl.star(message)" class="star fa fa-star"></i>
               </div>
-              <div ng-if="message.starred==false">
-              <i ng-click="message.starred=true" class="star fa fa-star-o"></i>
+
+              <div ng-if="(message.starred == false)" class="col-xs-2">
+                <i ng-click="ctrl.star(message)" class="star fa fa-star-o"></i>
               </div>
             </div>
           </div>
