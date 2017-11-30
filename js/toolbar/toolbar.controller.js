@@ -74,7 +74,7 @@ angular.module('inboxApp')
   .then(() => {
     $http.get(url)
     .then((result) => {
-      vm.messages = data.data._embedded.messages
+      vm.messages = result.data._embedded.messages
     })
   })
 }
